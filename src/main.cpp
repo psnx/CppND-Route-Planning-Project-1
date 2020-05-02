@@ -7,8 +7,31 @@
 #include "route_model.h"
 #include "render.h"
 #include "route_planner.h"
+#include "util.h"
 
 using namespace std::experimental;
+/* 
+Added by Tamas to sanitize input
+*/
+int getIntUserInput(bool predicate (float), std::string msg)
+{
+    while (true)
+    {
+        std::cout << "Enter a value for " << msg;
+        float x;
+        std::cin >> x;
+        
+        if (! std::cin.fail()  && predicate(x))
+        {
+            std::cin.ignore(INT_MAX,'\n'); 
+            return x;
+           
+        }
+        std::cin.clear(); 
+        std::cin.ignore(INT_MAX,'\n');
+        std::cout << "Invalid input.\n";
+    }
+}
 
 static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
 {   
@@ -55,6 +78,11 @@ int main(int argc, const char **argv)
     // TODO 1: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
     // user input for these values using std::cin. Pass the user input to the
     // RoutePlanner object below in place of 10, 10, 90, 90.
+    int start_x = getIntUserInput([](float x) { return x<90 && x>0;}, "start X: " );
+    int start_y = getIntUserInput([](float x) { return x<90 && x>0;}, "start Y: " );
+    int end_x = getIntUserInput([](float x) { return x<90 && x>0;}, "end X: " );
+    int end_y = getIntUserInput([](float x) { return x<90 && x>0;}, "end Y: " );
+    std::cout << "start" << start_x << "\n";
 
     // Build Model.
     RouteModel model{osm_data};
