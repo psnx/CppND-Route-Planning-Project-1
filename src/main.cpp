@@ -78,10 +78,10 @@ int main(int argc, const char **argv)
     // TODO 1: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
     // user input for these values using std::cin. Pass the user input to the
     // RoutePlanner object below in place of 10, 10, 90, 90.
-    const float start_x = getFloatUserInput([](float x) { return x<90 && x>0;}, "start X: " );
-    const float start_y = getFloatUserInput([](float x) { return x<90 && x>0;}, "start Y: " );
-    const float end_x = getFloatUserInput([](float x) { return x<90 && x>0;}, "end X: " );
-    const float end_y = getFloatUserInput([](float x) { return x<90 && x>0;}, "end Y: " );
+    float start_x = getFloatUserInput([](float x) { return x<=90 && x>0;}, "start X: " );
+    float start_y = getFloatUserInput([](float x) { return x<=90 && x>0;}, "start Y: " );
+    float end_x = getFloatUserInput([](float x) { return x<=90 && x>0;}, "end X: " );
+    float end_y = getFloatUserInput([](float x) { return x<=90 && x>0;}, "end Y: " );
     std::cout << "start" << start_x << "\n";
 
     // Build Model.
