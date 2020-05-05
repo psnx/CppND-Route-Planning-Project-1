@@ -13,7 +13,7 @@ using namespace std::experimental;
 /* 
 Added by Tamas to sanitize input
 */
-int getFloatUserInput(bool predicate (float), std::string msg)
+float getFloatUserInput(bool predicate (float), std::string msg)
 {
     while (true)
     {
